@@ -16,5 +16,6 @@ Having the latest version of XCode installed on your machine.
 ### Run
 
 ```
-Open the project using XCode. You can either run it on the simulator through XCode, or install it to a connected mobile device and run it on the device.
+Open the project using XCode. You can either run it on the simulator through XCode, or install it to a 
+connected mobile device and run it on the device.
 ```

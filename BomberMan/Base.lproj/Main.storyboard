@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BomberMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4ZW-bQ-QZ4" customClass="BomberManView" customModule="BomberMan" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIE-Td-H24">
+                                        <rect key="frame" x="278" y="550" width="30" height="30"/>
+                                        <state key="normal" title="↑"/>
+                                        <connections>
+                                            <action selector="upButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U9v-PE-WQG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pgK-6Q-3P7">
+                                        <rect key="frame" x="317" y="587" width="30" height="30"/>
+                                        <state key="normal" title="→"/>
+                                        <connections>
+                                            <action selector="rightButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eVM-c5-541"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-B1-0BR">
+                                        <rect key="frame" x="278" y="622" width="30" height="30"/>
+                                        <state key="normal" title="↓"/>
+                                        <connections>
+                                            <action selector="downButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rqr-AI-Vun"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RL0-Vh-9xU">
+                                        <rect key="frame" x="240" y="587" width="30" height="30"/>
+                                        <state key="normal" title="←"/>
+                                        <connections>
+                                            <action selector="leftButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7xH-tR-3ns"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eA6-wy-Mfo">
+                                        <rect key="frame" x="278" y="587" width="30" height="30"/>
+                                        <state key="normal" title="💣"/>
+                                        <connections>
+                                            <action selector="dropBomb:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7a-Cc-5En"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="PWC-B1-0BR" secondAttribute="bottom" constant="15" id="3X7-2n-dmD"/>
+                                    <constraint firstItem="eA6-wy-Mfo" firstAttribute="leading" secondItem="RL0-Vh-9xU" secondAttribute="trailing" constant="8" symbolic="YES" id="4nb-rT-YwD"/>
+                                    <constraint firstItem="pIE-Td-H24" firstAttribute="leading" secondItem="eA6-wy-Mfo" secondAttribute="leading" id="8y5-mF-9t3"/>
+                                    <constraint firstItem="eA6-wy-Mfo" firstAttribute="leading" secondItem="PWC-B1-0BR" secondAttribute="leading" id="CSV-GE-ELB"/>
+                                    <constraint firstItem="eA6-wy-Mfo" firstAttribute="top" secondItem="pIE-Td-H24" secondAttribute="bottom" constant="7" id="M3P-7t-UcK"/>
+                                    <constraint firstItem="PWC-B1-0BR" firstAttribute="top" secondItem="eA6-wy-Mfo" secondAttribute="bottom" constant="5" id="Oex-mA-YNt"/>
+                                    <constraint firstAttribute="trailing" secondItem="pgK-6Q-3P7" secondAttribute="trailing" constant="28" id="Yuz-Hs-E8q"/>
+                                    <constraint firstItem="RL0-Vh-9xU" firstAttribute="baseline" secondItem="eA6-wy-Mfo" secondAttribute="baseline" id="Z1t-Rk-u61"/>
+                                    <constraint firstItem="pgK-6Q-3P7" firstAttribute="leading" secondItem="eA6-wy-Mfo" secondAttribute="trailing" constant="9" id="iSM-s0-Yen"/>
+                                    <constraint firstItem="eA6-wy-Mfo" firstAttribute="baseline" secondItem="pgK-6Q-3P7" secondAttribute="baseline" id="ptQ-Ec-lnc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4ZW-bQ-QZ4" secondAttribute="trailing" id="Eha-Ky-Yk6"/>
+                            <constraint firstItem="4ZW-bQ-QZ4" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="JFJ-Yk-Xvt"/>
+                            <constraint firstItem="4ZW-bQ-QZ4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="W3U-is-Efh"/>
+                            <constraint firstItem="4ZW-bQ-QZ4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="tYF-pe-kDK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="bomberManView" destination="4ZW-bQ-QZ4" id="epG-eW-sqd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>

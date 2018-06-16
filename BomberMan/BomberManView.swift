@@ -12,23 +12,46 @@ class BomberManView: UIView {
     
     var coord: CGPoint = CGPoint(x: 100, y: 100) { didSet{setNeedsDisplay()}}
     
+    var coord1: CGPoint = CGPoint(x: 100, y: 100) { didSet{setNeedsDisplay()}}
+    
     var currentBombs: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
+    
 
     func playerPath() -> UIBezierPath {
         return UIBezierPath(arcCenter: coord, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
     }
     
+    func player1Path() -> UIBezierPath {
+        return UIBezierPath(arcCenter: coord1, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+    }
+    
     override func draw(_ rect: CGRect) {
         // Drawing code
+        let length = 0.9 * min(bounds.width, bounds.height)
+
+        let boundPath = UIBezierPath(rect: CGRect(origin: CGPoint(x: bounds.midX - 0.5 * length, y: bounds.midY - 0.5 * length), size: CGSize(width: length, height: length)))
+        
+        boundPath.lineWidth = 3.0
+        
         UIColor.blue.setStroke()
-        var player = playerPath()
+        boundPath.stroke()
+        
+        
+        UIColor.blue.setStroke()
+        let player = playerPath()
         player.lineWidth = 3.0
         player.stroke()
         
+        
+        UIColor.purple.setStroke()
+        let player1 = player1Path()
+        player1.lineWidth = 3.0
+        player1.stroke()
+        
         for bomb in currentBombs {
-            var bombPath = UIBezierPath(arcCenter: bomb, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+            let bombPath = UIBezierPath(arcCenter: bomb, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
             UIColor.red.set()
             bombPath.stroke()
             bombPath.fill()
@@ -38,7 +61,7 @@ class BomberManView: UIView {
         for box in explosionBoxes {
             let path = UIBezierPath()
             path.move(to: box[0])
-            var length = box.count
+            let length = box.count
             for idx in 1...length - 1 {
                 path.addLine(to: box[idx])
             }
@@ -50,9 +73,12 @@ class BomberManView: UIView {
     }
     
     func resetBomberManPosition(x: Double, y: Double) {
-            coord = CGPoint(x: x, y: y)
+        coord = CGPoint(x: x, y: y)
     }
     
+    func resetBomberMan1Poition(x: Double, y: Double) {
+        coord1 = CGPoint(x: x, y: y)
+    }
     
     func refreshBombs(bombs: [[Double]]) {
         var temp: [CGPoint] = []
@@ -62,12 +88,24 @@ class BomberManView: UIView {
         currentBombs = temp
     }
     
+    func getMinX() -> Double {
+        let length = 0.9 * min(bounds.width, bounds.height)
+        return Double(bounds.midX - 0.5 * length)
+    }
+    
+    func getMinY() -> Double {
+        let length = 0.9 * min(bounds.width, bounds.height)
+        return Double(bounds.midY - 0.5 * length)
+    }
+    
     func getMaxX() -> Double {
-        return Double(bounds.maxX)
+        let length = 0.9 * min(bounds.width, bounds.height)
+        return Double(bounds.midX + 0.5 * length)
     }
     
     func getMaxY() -> Double {
-        return Double(bounds.maxY)
+        let length = 0.9 * min(bounds.width, bounds.height)
+        return Double(bounds.midY + 0.5 * length)
     }
     
     func explode() {
@@ -92,7 +130,6 @@ class BomberManView: UIView {
             changed?.remove(at: 0)
             self?.explosionBoxes = changed!
         }
-        
 
     }
 

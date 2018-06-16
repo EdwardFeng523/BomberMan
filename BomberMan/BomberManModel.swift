@@ -11,34 +11,45 @@ import Foundation
 
 class BomberManModel
 {
+    var minX: Double = 0 {didSet{bomberManX = minX + 20}}
+    var minY: Double = 0 {didSet{bomberManY = minY + 20}}
+    var maxX: Double = 100 {didSet{bomberMan1X = maxX - 20}}
+    var maxY: Double = 100 {didSet{bomberMan1Y = maxY - 20}}
     
-    var maxX: Double = 100
-    var maxY: Double = 100
-    var bomberManX: Double = 20
-    var bomberManY: Double = 20
+    var bomberManX: Double = 45
+    var bomberManY: Double = 195
+    
+    var bomberMan1X: Double = 265
+    var bomberMan1Y: Double = 275
+    
+    var gameOver: Bool = false
+    
+    var bomberManWins: Bool = false
+    
+    var bomberMan1Wins: Bool = false
     
     var bombs: [[Double]] = []
     
     func moveRight() {
-        if (bomberManX <= maxX - 10) {
+        if (bomberManX <= maxX - 30) {
              bomberManX += 20
         }
     }
     
     func moveLeft() {
-        if (bomberManX >= 10) {
+        if (bomberManX >= minX + 30) {
             bomberManX -= 20
         }
     }
     
     func moveUp () {
-        if (bomberManY >= 10) {
+        if (bomberManY >= minY + 30) {
             bomberManY -= 20
         }
     }
     
     func moveDown() {
-        if (bomberManY <= maxY - 10) {
+        if (bomberManY <= maxY - 30) {
             bomberManY += 20
         }
     }
@@ -50,10 +61,18 @@ class BomberManModel
     func explode() {
         var exploded = bombs.remove(at: 0)
         if (bomberManX >= exploded[0] - 10 && bomberManX <= exploded[0] + 10 && bomberManY >= exploded[1] - 40 && bomberManY <= exploded[1] + 40) {
-            print ("Game over")
+            gameOver = true
+        } else if (bomberManX >= exploded[0] - 40 && bomberManX <= exploded[0] + 40 && bomberManY >= exploded[1] - 10 && bomberManY <= exploded[1] + 10) {
+            gameOver = true
         }
-        if (bomberManX >= exploded[0] - 40 && bomberManX <= exploded[0] + 40 && bomberManY >= exploded[1] - 10 && bomberManY <= exploded[1] + 10) {
-            print ("Game over")
-        }
+    }
+    
+    func restart() {
+        gameOver = false
+        bomberManWins = false
+        bomberMan1Wins = false
+        bomberManX = 120
+        bomberManY = 120
+        bombs = []
     }
 }

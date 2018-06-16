@@ -14,6 +14,8 @@ class ViewController: UIViewController {
         didSet{
             bomberManModel.maxX = bomberManView.getMaxX()
             bomberManModel.maxY = bomberManView.getMaxY()
+            bomberManModel.minX = bomberManView.getMinX()
+            bomberManModel.minY = bomberManView.getMinY()
             updateUI()
         }
     }
@@ -57,10 +59,29 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
-        bomberManModel.maxX = bomberManView.getMaxX()
-        bomberManModel.maxY = bomberManView.getMaxY()
+        if (bomberManModel.maxX != bomberManView.getMaxX()
+            || bomberManModel.maxY != bomberManView.getMaxY()
+            || bomberManModel.minX != bomberManView.getMinX()
+            || bomberManModel.minY != bomberManView.getMinY()) {
+            bomberManModel.maxX = bomberManView.getMaxX()
+            bomberManModel.maxY = bomberManView.getMaxY()
+            bomberManModel.minX = bomberManView.getMinX()
+            bomberManModel.minY = bomberManView.getMinY()
+        }
+
         bomberManView?.resetBomberManPosition(x: bomberManModel.bomberManX, y: bomberManModel.bomberManY)
+        bomberManView?.resetBomberMan1Poition(x: bomberManModel.bomberMan1X, y: bomberManModel.bomberMan1Y)
         bomberManView?.refreshBombs(bombs: bomberManModel.bombs)
+        if (bomberManModel.gameOver == true) {
+            let alert = UIAlertController(title: "Game over", message: "Somebody wins", preferredStyle: UIAlertControllerStyle.alert)
+            let action = UIAlertAction(title: "Restart", style: .default, handler: {[weak self]_ in
+                self?.bomberManModel.restart()
+                self?.updateUI()
+            })
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+            
+        }
     }
 }
 

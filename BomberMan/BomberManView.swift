@@ -10,9 +10,9 @@ import UIKit
 
 class BomberManView: UIView {
     
-    var coord: CGPoint = CGPoint(x: 100, y: 100) { didSet{setNeedsDisplay()}}
+    var coord: CGPoint = CGPoint(x: 0, y: 0) { didSet{setNeedsDisplay()}}
     
-    var coord1: CGPoint = CGPoint(x: 100, y: 100) { didSet{setNeedsDisplay()}}
+    var coord1: CGPoint = CGPoint(x: 0, y: 0) { didSet{setNeedsDisplay()}}
     
     var currentBombs: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     

@@ -13,14 +13,14 @@ class BomberManModel
 {
     var minX: Double = 0 {didSet{bomberManX = minX + 20}}
     var minY: Double = 0 {didSet{bomberManY = minY + 20}}
-    var maxX: Double = 100 {didSet{bomberMan1X = maxX - 20}}
-    var maxY: Double = 100 {didSet{bomberMan1Y = maxY - 20}}
+    var maxX: Double = 0 {didSet{bomberMan1X = maxX - 20}}
+    var maxY: Double = 0 {didSet{bomberMan1Y = maxY - 20}}
     
-    var bomberManX: Double = 45
-    var bomberManY: Double = 195
+    var bomberManX: Double = 0
+    var bomberManY: Double = 0
     
-    var bomberMan1X: Double = 265
-    var bomberMan1Y: Double = 275
+    var bomberMan1X: Double = 0
+    var bomberMan1Y: Double = 0
     
     var gameOver: Bool = false
     
@@ -54,15 +54,43 @@ class BomberManModel
         }
     }
     
+    func moveRight1() {
+        if (bomberMan1X <= maxX - 30) {
+            bomberMan1X += 20
+        }
+    }
+    
+    func moveLeft1() {
+        if (bomberMan1X >= minX + 30) {
+            bomberMan1X -= 20
+        }
+    }
+    
+    func moveUp1 () {
+        if (bomberMan1Y >= minY + 30) {
+            bomberMan1Y -= 20
+        }
+    }
+    
+    func moveDown1() {
+        if (bomberMan1Y <= maxY - 30) {
+            bomberMan1Y += 20
+        }
+    }
+    
     func dropBomb() {
         bombs.append([bomberManX, bomberManY])
     }
     
+    func dropBomb1() {
+        bombs.append([bomberMan1X, bomberMan1Y])
+    }
+    
     func explode() {
         var exploded = bombs.remove(at: 0)
-        if (bomberManX >= exploded[0] - 10 && bomberManX <= exploded[0] + 10 && bomberManY >= exploded[1] - 40 && bomberManY <= exploded[1] + 40) {
+        if (bomberManX > exploded[0] - 10 && bomberManX < exploded[0] + 10 && bomberManY > exploded[1] - 40 && bomberManY < exploded[1] + 40) {
             gameOver = true
-        } else if (bomberManX >= exploded[0] - 40 && bomberManX <= exploded[0] + 40 && bomberManY >= exploded[1] - 10 && bomberManY <= exploded[1] + 10) {
+        } else if (bomberManX > exploded[0] - 40 && bomberManX < exploded[0] + 40 && bomberManY > exploded[1] - 10 && bomberManY < exploded[1] + 10) {
             gameOver = true
         }
     }
@@ -71,8 +99,10 @@ class BomberManModel
         gameOver = false
         bomberManWins = false
         bomberMan1Wins = false
-        bomberManX = 120
-        bomberManY = 120
+        bomberManX = minX + 20
+        bomberManY = minY + 20
+        bomberMan1X = maxX - 20
+        bomberMan1Y = maxY - 20
         bombs = []
     }
 }

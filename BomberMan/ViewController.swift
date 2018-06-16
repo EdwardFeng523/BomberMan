@@ -27,6 +27,15 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        let newAlert = UIAlertController(title: "Welcome to BomberMan", message: "New game?", preferredStyle: .alert)
+        let button = UIAlertAction(title: "Start", style: .default) {[weak self] _ in
+            self?.updateUI()
+        }
+        newAlert.addAction(button)
+        present(newAlert, animated: true, completion: nil)
+    }
+    
     @IBAction func rightButton(_ sender: Any) {
         bomberManModel.moveRight()
         updateUI()
@@ -45,6 +54,38 @@ class ViewController: UIViewController {
     @IBAction func upButton(_ sender: Any) {
         bomberManModel.moveUp()
         updateUI()
+    }
+    
+    
+    @IBAction func leftButton1(_ sender: Any) {
+        bomberManModel.moveLeft1()
+        updateUI()
+    }
+    
+    @IBAction func downButton1(_ sender: Any) {
+        bomberManModel.moveDown1()
+        updateUI()
+    }
+    
+    @IBAction func rightButton1(_ sender: Any) {
+        bomberManModel.moveRight1()
+        updateUI()
+    }
+    
+    @IBAction func upButton1(_ sender: Any) {
+        bomberManModel.moveUp1()
+        updateUI()
+    }
+    
+    @IBAction func dropBomb1(_ sender: Any) {
+        bomberManModel.dropBomb1()
+        updateUI()
+        
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) {[weak self]_ in
+            self?.bomberManModel.explode()
+            self?.bomberManView.explode()
+            self?.updateUI()
+        }
     }
     
     @IBAction func dropBomb(_ sender: Any) {
@@ -73,6 +114,9 @@ class ViewController: UIViewController {
         bomberManView?.resetBomberMan1Poition(x: bomberManModel.bomberMan1X, y: bomberManModel.bomberMan1Y)
         bomberManView?.refreshBombs(bombs: bomberManModel.bombs)
         if (bomberManModel.gameOver == true) {
+            
+            
+            
             let alert = UIAlertController(title: "Game over", message: "Somebody wins", preferredStyle: UIAlertControllerStyle.alert)
             let action = UIAlertAction(title: "Restart", style: .default, handler: {[weak self]_ in
                 self?.bomberManModel.restart()

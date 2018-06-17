@@ -115,9 +115,14 @@ class ViewController: UIViewController {
         bomberManView?.refreshBombs(bombs: bomberManModel.bombs)
         if (bomberManModel.gameOver == true) {
             
+            var msg: String = ""
+            if (bomberManModel.bomberMan1Wins) {
+                msg = "Purple wins"
+            } else {
+                msg = "Blue wins"
+            }
             
-            
-            let alert = UIAlertController(title: "Game over", message: "Somebody wins", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Game over", message: msg, preferredStyle: UIAlertControllerStyle.alert)
             let action = UIAlertAction(title: "Restart", style: .default, handler: {[weak self]_ in
                 self?.bomberManModel.restart()
                 self?.updateUI()

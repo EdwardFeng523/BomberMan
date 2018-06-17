@@ -90,8 +90,16 @@ class BomberManModel
         var exploded = bombs.remove(at: 0)
         if (bomberManX > exploded[0] - 10 && bomberManX < exploded[0] + 10 && bomberManY > exploded[1] - 40 && bomberManY < exploded[1] + 40) {
             gameOver = true
+            bomberMan1Wins = true
         } else if (bomberManX > exploded[0] - 40 && bomberManX < exploded[0] + 40 && bomberManY > exploded[1] - 10 && bomberManY < exploded[1] + 10) {
             gameOver = true
+            bomberMan1Wins = true
+        } else if (bomberMan1X > exploded[0] - 10 && bomberMan1X < exploded[0] + 10 && bomberMan1Y > exploded[1] - 40 && bomberMan1Y < exploded[1] + 40) {
+            gameOver = true
+            bomberManWins = true
+        } else if (bomberMan1X > exploded[0] - 40 && bomberMan1X < exploded[0] + 40 && bomberMan1Y > exploded[1] - 10 && bomberMan1Y < exploded[1] + 10) {
+            gameOver = true
+            bomberManWins = true
         }
     }
     

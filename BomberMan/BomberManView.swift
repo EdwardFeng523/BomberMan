@@ -18,13 +18,15 @@ class BomberManView: UIView {
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
     
+    var radius: Double = 0 { didSet{setNeedsDisplay()} }
+    
 
     func playerPath() -> UIBezierPath {
-        return UIBezierPath(arcCenter: coord, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        return UIBezierPath(arcCenter: coord, radius: CGFloat(radius), startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
     }
     
     func player1Path() -> UIBezierPath {
-        return UIBezierPath(arcCenter: coord1, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        return UIBezierPath(arcCenter: coord1, radius: CGFloat(radius), startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
     }
     
     override func draw(_ rect: CGRect) {

@@ -14,6 +14,8 @@
 		875E825C20CC7B5A007DF1E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875E825A20CC7B5A007DF1E9 /* LaunchScreen.storyboard */; };
 		875E826420CC7BA1007DF1E9 /* BomberManView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E826320CC7BA1007DF1E9 /* BomberManView.swift */; };
 		875E826620CC80F4007DF1E9 /* BomberManModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875E826520CC80F4007DF1E9 /* BomberManModel.swift */; };
+		87CA1CE9214EDF2900F7F08B /* BomberMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA1CE8214EDF2900F7F08B /* BomberMan.swift */; };
+		87CA1CEB214EE9B200F7F08B /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CA1CEA214EE9B200F7F08B /* Bomb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		875E825D20CC7B5A007DF1E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875E826320CC7BA1007DF1E9 /* BomberManView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberManView.swift; sourceTree = "<group>"; };
 		875E826520CC80F4007DF1E9 /* BomberManModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberManModel.swift; sourceTree = "<group>"; };
+		87CA1CE8214EDF2900F7F08B /* BomberMan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BomberMan.swift; sourceTree = "<group>"; };
+		87CA1CEA214EE9B200F7F08B /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				875E825A20CC7B5A007DF1E9 /* LaunchScreen.storyboard */,
 				875E825D20CC7B5A007DF1E9 /* Info.plist */,
 				875E826520CC80F4007DF1E9 /* BomberManModel.swift */,
+				87CA1CE8214EDF2900F7F08B /* BomberMan.swift */,
+				87CA1CEA214EE9B200F7F08B /* Bomb.swift */,
 			);
 			path = BomberMan;
 			sourceTree = "<group>";
@@ -146,6 +152,8 @@
 				875E825220CC7B58007DF1E9 /* AppDelegate.swift in Sources */,
 				875E826420CC7BA1007DF1E9 /* BomberManView.swift in Sources */,
 				875E826620CC80F4007DF1E9 /* BomberManModel.swift in Sources */,
+				87CA1CE9214EDF2900F7F08B /* BomberMan.swift in Sources */,
+				87CA1CEB214EE9B200F7F08B /* Bomb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

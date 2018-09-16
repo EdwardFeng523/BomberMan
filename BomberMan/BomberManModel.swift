@@ -11,10 +11,26 @@ import Foundation
 
 class BomberManModel
 {
-    var minX: Double = 0 {didSet{bomberManX = minX + 20}}
-    var minY: Double = 0 {didSet{bomberManY = minY + 20}}
-    var maxX: Double = 0 {didSet{bomberMan1X = maxX - 20}}
-    var maxY: Double = 0 {didSet{bomberMan1Y = maxY - 20}}
+    var minX: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
+    var minY: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
+    var maxX: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
+    var maxY: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
+    
+    
+//    var bomberMan1 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
+//    var bomberMan2 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
+
+    
+    
+    
+    var radius: Double = 0 {
+        didSet{
+            bomberManX = minX + radius
+            bomberManY = minY + radius
+            bomberMan1X = maxX - radius
+            bomberMan1Y = maxY - radius
+        }
+    }
     
     var bomberManX: Double = 0
     var bomberManY: Double = 0
@@ -31,50 +47,50 @@ class BomberManModel
     var bombs: [[Double]] = []
     
     func moveRight() {
-        if (bomberManX <= maxX - 30) {
-             bomberManX += 20
+        if (bomberManX < maxX - radius) {
+             bomberManX += radius
         }
     }
     
     func moveLeft() {
-        if (bomberManX >= minX + 30) {
-            bomberManX -= 20
+        if (bomberManX > minX + radius) {
+            bomberManX -= radius
         }
     }
     
     func moveUp () {
-        if (bomberManY >= minY + 30) {
-            bomberManY -= 20
+        if (bomberManY > minY + radius) {
+            bomberManY -= radius
         }
     }
     
     func moveDown() {
-        if (bomberManY <= maxY - 30) {
-            bomberManY += 20
+        if (bomberManY < maxY - radius) {
+            bomberManY += radius
         }
     }
     
     func moveRight1() {
-        if (bomberMan1X <= maxX - 30) {
-            bomberMan1X += 20
+        if (bomberMan1X < maxX - radius) {
+            bomberMan1X += radius
         }
     }
     
     func moveLeft1() {
-        if (bomberMan1X >= minX + 30) {
-            bomberMan1X -= 20
+        if (bomberMan1X > minX + radius) {
+            bomberMan1X -= radius
         }
     }
     
     func moveUp1 () {
-        if (bomberMan1Y >= minY + 30) {
-            bomberMan1Y -= 20
+        if (bomberMan1Y > minY + radius) {
+            bomberMan1Y -= radius
         }
     }
     
     func moveDown1() {
-        if (bomberMan1Y <= maxY - 30) {
-            bomberMan1Y += 20
+        if (bomberMan1Y < maxY - radius) {
+            bomberMan1Y += radius
         }
     }
     
@@ -107,10 +123,10 @@ class BomberManModel
         gameOver = false
         bomberManWins = false
         bomberMan1Wins = false
-        bomberManX = minX + 20
-        bomberManY = minY + 20
-        bomberMan1X = maxX - 20
-        bomberMan1Y = maxY - 20
+        bomberManX = minX + radius
+        bomberManY = minY + radius
+        bomberMan1X = maxX - radius
+        bomberMan1Y = maxY - radius
         bombs = []
     }
 }

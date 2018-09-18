@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct Bomb {
-    var x: Double
-    var y: Double
+    var point: CGPoint
     var range: Double
+    
+    init(x: Double, y: Double, range: Double) {
+        self.point = CGPoint(x: CGFloat(x), y:CGFloat(y))
+        self.range = range
+    }
 }

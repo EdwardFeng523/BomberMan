@@ -19,7 +19,7 @@ class BomberManModel
     
 //    var bomberMan1 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
 //    var bomberMan2 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
-
+    
     
     
     
@@ -35,8 +35,12 @@ class BomberManModel
     var bomberManX: Double = 0
     var bomberManY: Double = 0
     
+    var bomberManRange: Double = 20
+    
     var bomberMan1X: Double = 0
     var bomberMan1Y: Double = 0
+    
+    var bomberMan1Range: Double = 20
     
     var gameOver: Bool = false
     

@@ -16,7 +16,6 @@ class ViewController: UIViewController {
             bomberManModel.maxY = bomberManView.getMaxY()
             bomberManModel.minX = bomberManView.getMinX()
             bomberManModel.minY = bomberManView.getMinY()
-//            updateUI()
         }
     }
     
@@ -110,8 +109,7 @@ class ViewController: UIViewController {
             bomberManModel.minY = bomberManView.getMinY()
         }
         
-
-        bomberManView?.radius = Double(bomberManModel.radius)
+        bomberManView?.radius = bomberManModel.radius
         
         bomberManView?.resetBomberManPosition(x: bomberManModel.bomberManX, y: bomberManModel.bomberManY)
         bomberManView?.resetBomberMan1Poition(x: bomberManModel.bomberMan1X, y: bomberManModel.bomberMan1Y)

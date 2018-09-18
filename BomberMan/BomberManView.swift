@@ -18,7 +18,8 @@ class BomberManView: UIView {
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
     
-    var radius: Double = 0 { didSet{setNeedsDisplay()} }
+    var radius : Double = 0 {didSet{setNeedsDisplay()}}
+    
     
 
     func playerPath() -> UIBezierPath {
@@ -113,7 +114,7 @@ class BomberManView: UIView {
     func explode() {
         var temp = explosionBoxes
         let center = currentBombs.remove(at: 0)
-        let corner1 = CGPoint(x: center.x - 10, y: center.y - 10)
+        let corner1 = CGPoint(x: center.x - CGFloat(radius), y: center.y - CGFloat(radius))
         let corner2 = CGPoint(x: center.x - 10, y: center.y - 30)
         let corner3 = CGPoint(x: center.x + 10, y: center.y - 30)
         let corner4 = CGPoint(x: center.x + 10, y: center.y - 10)

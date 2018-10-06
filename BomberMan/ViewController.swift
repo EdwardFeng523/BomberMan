@@ -113,7 +113,9 @@ class ViewController: UIViewController {
         
         bomberManView?.resetBomberManPosition(x: bomberManModel.bomberManX, y: bomberManModel.bomberManY)
         bomberManView?.resetBomberMan1Poition(x: bomberManModel.bomberMan1X, y: bomberManModel.bomberMan1Y)
+        
         bomberManView?.refreshBombs(bombs: bomberManModel.bombs)
+        
         if (bomberManModel.gameOver == true) {
             
             var msg: String = ""

@@ -16,6 +16,8 @@ class BomberManView: UIView {
     
     var currentBombs: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     
+    var currentBombsRange: [Double] = [] { didSet{setNeedsDisplay()}}
+    
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
     
     var radius : Double = 0 {didSet{setNeedsDisplay()}}
@@ -85,10 +87,13 @@ class BomberManView: UIView {
     
     func refreshBombs(bombs: [[Double]]) {
         var temp: [CGPoint] = []
+        var rangeTemp: [Double] = []
         for bomb in bombs {
             temp.append(CGPoint(x: bomb[0], y: bomb[1]))
+            rangeTemp.append(bomb[2])
         }
         currentBombs = temp
+        currentBombsRange = rangeTemp
     }
     
     func getMinX() -> Double {
@@ -114,18 +119,19 @@ class BomberManView: UIView {
     func explode() {
         var temp = explosionBoxes
         let center = currentBombs.remove(at: 0)
+        let range = currentBombsRange.remove(at: 0)
         let corner1 = CGPoint(x: center.x - CGFloat(radius), y: center.y - CGFloat(radius))
-        let corner2 = CGPoint(x: center.x - 10, y: center.y - 30)
-        let corner3 = CGPoint(x: center.x + 10, y: center.y - 30)
+        let corner2 = CGPoint(x: center.x - 10, y: center.y - CGFloat(range))
+        let corner3 = CGPoint(x: center.x + 10, y: center.y - CGFloat(range))
         let corner4 = CGPoint(x: center.x + 10, y: center.y - 10)
-        let corner5 = CGPoint(x: center.x + 30, y: center.y - 10)
-        let corner6 = CGPoint(x: center.x + 30, y: center.y + 10)
+        let corner5 = CGPoint(x: center.x + CGFloat(range), y: center.y - 10)
+        let corner6 = CGPoint(x: center.x + CGFloat(range), y: center.y + 10)
         let corner7 = CGPoint(x: center.x + 10, y: center.y + 10)
-        let corner8 = CGPoint(x: center.x + 10, y: center.y + 30)
-        let corner9 = CGPoint(x: center.x - 10, y: center.y + 30)
+        let corner8 = CGPoint(x: center.x + 10, y: center.y + CGFloat(range))
+        let corner9 = CGPoint(x: center.x - 10, y: center.y + CGFloat(range))
         let corner10 = CGPoint(x: center.x - 10, y: center.y + 10)
-        let corner11 = CGPoint(x: center.x - 30, y: center.y + 10)
-        let corner12 = CGPoint(x: center.x - 30, y: center.y - 10)
+        let corner11 = CGPoint(x: center.x - CGFloat(range), y: center.y + 10)
+        let corner12 = CGPoint(x: center.x - CGFloat(range), y: center.y - 10)
         temp.append([corner1, corner2, corner3, corner4, corner5, corner6, corner7, corner8, corner9, corner10, corner11, corner12])
         explosionBoxes = temp
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {[weak self]_ in

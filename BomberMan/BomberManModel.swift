@@ -35,12 +35,12 @@ class BomberManModel
     var bomberManX: Double = 0
     var bomberManY: Double = 0
     
-    var bomberManRange: Double = 20
+    var bomberManRange: Double = 100
     
     var bomberMan1X: Double = 0
     var bomberMan1Y: Double = 0
     
-    var bomberMan1Range: Double = 20
+    var bomberMan1Range: Double = 30
     
     var gameOver: Bool = false
     
@@ -99,25 +99,25 @@ class BomberManModel
     }
     
     func dropBomb() {
-        bombs.append([bomberManX, bomberManY])
+        bombs.append([bomberManX, bomberManY, bomberManRange])
     }
     
     func dropBomb1() {
-        bombs.append([bomberMan1X, bomberMan1Y])
+        bombs.append([bomberMan1X, bomberMan1Y, bomberMan1Range])
     }
     
     func explode() {
         var exploded = bombs.remove(at: 0)
-        if (bomberManX > exploded[0] - 10 && bomberManX < exploded[0] + 10 && bomberManY > exploded[1] - 40 && bomberManY < exploded[1] + 40) {
+        if (bomberManX > exploded[0] - 10 && bomberManX < exploded[0] + 10 && bomberManY > exploded[1] - (radius + exploded[2]) && bomberManY < exploded[1] + (radius + exploded[2])) {
             gameOver = true
             bomberMan1Wins = true
-        } else if (bomberManX > exploded[0] - 40 && bomberManX < exploded[0] + 40 && bomberManY > exploded[1] - 10 && bomberManY < exploded[1] + 10) {
+        } else if (bomberManX > exploded[0] - (radius + exploded[2]) && bomberManX < exploded[0] + (radius + exploded[2]) && bomberManY > exploded[1] - 10 && bomberManY < exploded[1] + 10) {
             gameOver = true
             bomberMan1Wins = true
-        } else if (bomberMan1X > exploded[0] - 10 && bomberMan1X < exploded[0] + 10 && bomberMan1Y > exploded[1] - 40 && bomberMan1Y < exploded[1] + 40) {
+        } else if (bomberMan1X > exploded[0] - 10 && bomberMan1X < exploded[0] + 10 && bomberMan1Y > exploded[1] - (radius + exploded[2]) && bomberMan1Y < exploded[1] + (radius + exploded[2])) {
             gameOver = true
             bomberManWins = true
-        } else if (bomberMan1X > exploded[0] - 40 && bomberMan1X < exploded[0] + 40 && bomberMan1Y > exploded[1] - 10 && bomberMan1Y < exploded[1] + 10) {
+        } else if (bomberMan1X > exploded[0] - (radius + exploded[2]) && bomberMan1X < exploded[0] + (radius + exploded[2]) && bomberMan1Y > exploded[1] - 10 && bomberMan1Y < exploded[1] + 10) {
             gameOver = true
             bomberManWins = true
         }

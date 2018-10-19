@@ -16,12 +16,8 @@ class BomberManModel
     var maxX: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
     var maxY: Double = 0 {didSet{radius = (min(maxX - minX, maxY - minY)) / 30}}
     
-    
-//    var bomberMan1 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
-//    var bomberMan2 = BomberMan(x: 10, y: 10, radius: 20, range: 10)
-    
-    
-    
+    var addOnX: Double = 0
+    var addOnY: Double = 0
     
     var radius: Double = 0 {
         didSet{
@@ -29,13 +25,17 @@ class BomberManModel
             bomberManY = minY + radius
             bomberMan1X = maxX - radius
             bomberMan1Y = maxY - radius
+            addOnX = (minX + maxX) / 2
+            addOnY = (minY + maxY) / 2
+            print (addOnX)
+            print (addOnY)
         }
     }
     
     var bomberManX: Double = 0
     var bomberManY: Double = 0
     
-    var bomberManRange: Double = 100
+    var bomberManRange: Double = 30
     
     var bomberMan1X: Double = 0
     var bomberMan1Y: Double = 0
@@ -50,9 +50,25 @@ class BomberManModel
     
     var bombs: [[Double]] = []
     
+    func checkAddOns() {
+        if (bomberManX >= addOnX - radius && bomberManX <= addOnX + radius &&
+            bomberManY <= addOnY - radius && bomberManY <= addOnY + radius) {
+            bomberManRange *= 2
+            addOnX = 1000000
+            addOnY = 1000000
+        }
+        if (bomberMan1X >= addOnX - radius && bomberMan1X <= addOnX + radius &&
+            bomberMan1Y <= addOnY - radius && bomberMan1Y <= addOnY + radius) {
+            bomberMan1Range *= 2
+            addOnX = 1000000
+            addOnY = 1000000
+        }
+    }
+    
     func moveRight() {
         if (bomberManX < maxX - radius) {
              bomberManX += radius
+
         }
     }
     

@@ -109,6 +109,8 @@ class ViewController: UIViewController {
             bomberManModel.minY = bomberManView.getMinY()
         }
         
+        bomberManModel.checkAddOns()
+        
         bomberManView?.radius = bomberManModel.radius
         
         bomberManView?.resetBomberManPosition(x: bomberManModel.bomberManX, y: bomberManModel.bomberManY)

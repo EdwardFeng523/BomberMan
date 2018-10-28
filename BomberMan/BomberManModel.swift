@@ -19,12 +19,21 @@ class BomberManModel
     var addOnX: Double = 0
     var addOnY: Double = 0
     
+    var addOns: [[Double]] = []
+    
+    var bushes: [[Double]] = []
+    
+    var bricks: [[Double]] = []
+    
     var radius: Double = 0 {
         didSet{
+            // put all add-ons in and put all map elements in
+            
             bomberManX = minX + radius
             bomberManY = minY + radius
             bomberMan1X = maxX - radius
             bomberMan1Y = maxY - radius
+            
             addOnX = (minX + maxX) / 2
             addOnY = (minY + maxY) / 2
             print (addOnX)

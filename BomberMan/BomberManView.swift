@@ -16,6 +16,8 @@ class BomberManView: UIView {
     
     var currentBombs: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     
+    var currentPowerUps: [CGPoint] = [] { didSet{setNeedsDisplay()} }
+    
     var currentBombsRange: [Double] = [] { didSet{setNeedsDisplay()}}
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
@@ -56,10 +58,17 @@ class BomberManView: UIView {
         player1.stroke()
         
         for bomb in currentBombs {
-            let bombPath = UIBezierPath(arcCenter: bomb, radius: 10, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+            let bombPath = UIBezierPath(arcCenter: bomb, radius: CGFloat(radius), startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
             UIColor.red.set()
             bombPath.stroke()
             bombPath.fill()
+        }
+        
+        for powerUp in currentPowerUps {
+            let powerUpPath = UIBezierPath(arcCenter: powerUp, radius: CGFloat(radius), startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+            UIColor.cyan.set()
+            powerUpPath.stroke()
+            powerUpPath.fill()
         }
         
         
@@ -94,6 +103,14 @@ class BomberManView: UIView {
         }
         currentBombs = temp
         currentBombsRange = rangeTemp
+    }
+    
+    func refreshPowerUps(powerUps: [[Double]]) {
+        var temp: [CGPoint] = []
+        for powerUp in powerUps {
+            temp.append(CGPoint(x: powerUp[0], y: powerUp[1]))
+        }
+        currentPowerUps = temp
     }
     
     func getMinX() -> Double {

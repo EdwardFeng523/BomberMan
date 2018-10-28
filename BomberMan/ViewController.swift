@@ -118,6 +118,8 @@ class ViewController: UIViewController {
         
         bomberManView?.refreshBombs(bombs: bomberManModel.bombs)
         
+        bomberManView?.refreshPowerUps(powerUps: bomberManModel.powerUps)
+        
         if (bomberManModel.gameOver == true) {
             
             var msg: String = ""

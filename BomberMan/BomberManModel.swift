@@ -19,7 +19,9 @@ class BomberManModel
     var addOnX: Double = 0
     var addOnY: Double = 0
     
-    var addOns: [[Double]] = []
+    var powerUps: [[Double]] = []
+    
+    
     
     var bushes: [[Double]] = []
     
@@ -34,10 +36,16 @@ class BomberManModel
             bomberMan1X = maxX - radius
             bomberMan1Y = maxY - radius
             
-            addOnX = (minX + maxX) / 2
-            addOnY = (minY + maxY) / 2
-            print (addOnX)
-            print (addOnY)
+//            addOnX = (minX + maxX) / 2
+//            addOnY = (minY + maxY) / 2
+            
+            
+            powerUps = [[(minX + maxX) / 2, (minY + maxY) / 2],
+                      [(minX + maxX) / 4, (minY + maxY) / 4],
+                      [3 * (minX + maxX) / 4, 3 * (minY + maxY) / 4]]
+            
+//            print (addOnX)
+//            print (addOnY)
         }
     }
     
@@ -60,17 +68,22 @@ class BomberManModel
     var bombs: [[Double]] = []
     
     func checkAddOns() {
-        if (bomberManX >= addOnX - radius && bomberManX <= addOnX + radius &&
-            bomberManY <= addOnY - radius && bomberManY <= addOnY + radius) {
-            bomberManRange *= 2
-            addOnX = 1000000
-            addOnY = 1000000
-        }
-        if (bomberMan1X >= addOnX - radius && bomberMan1X <= addOnX + radius &&
-            bomberMan1Y <= addOnY - radius && bomberMan1Y <= addOnY + radius) {
-            bomberMan1Range *= 2
-            addOnX = 1000000
-            addOnY = 1000000
+        
+        for powerUp in powerUps {
+            if (bomberManX >= powerUp[0] - radius && bomberManX <= powerUp[0] + radius &&
+                bomberManY <= powerUp[1] - radius && bomberManY <= powerUp[1] + radius) {
+                bomberManRange *= 2
+                powerUps.removeFirst()
+//                powerUp[0] = 1000000
+//                powerUp[1] = 1000000
+            }
+            else if (bomberMan1X >= powerUp[0] - radius && bomberMan1X <= powerUp[0] + radius &&
+                bomberMan1Y <= powerUp[1] - radius && bomberMan1Y <= powerUp[1] + radius) {
+                bomberMan1Range *= 2
+                powerUps.removeFirst()
+//                powerUp[0] = 1000000
+//                powerUp[1] = 1000000
+            }
         }
     }
     
@@ -157,5 +170,8 @@ class BomberManModel
         bomberMan1X = maxX - radius
         bomberMan1Y = maxY - radius
         bombs = []
+        powerUps = [[(minX + maxX) / 2, (minY + maxY) / 2],
+                    [(minX + maxX) / 4, (minY + maxY) / 4],
+                    [3 * (minX + maxX) / 4, 3 * (minY + maxY) / 4]]
     }
 }

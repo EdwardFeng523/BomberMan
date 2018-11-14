@@ -120,6 +120,8 @@ class ViewController: UIViewController {
         
         bomberManView?.refreshPowerUps(powerUps: bomberManModel.powerUps)
         
+        bomberManView?.refreshStone(stone: bomberManModel.stone)
+        
         if (bomberManModel.gameOver == true) {
             
             var msg: String = ""

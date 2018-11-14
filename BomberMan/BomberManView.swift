@@ -18,6 +18,8 @@ class BomberManView: UIView {
     
     var currentPowerUps: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     
+    var currentStone: [CGPoint] = [] { didSet{setNeedsDisplay()} }
+    
     var currentBombsRange: [Double] = [] { didSet{setNeedsDisplay()}}
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
@@ -71,6 +73,23 @@ class BomberManView: UIView {
             powerUpPath.fill()
         }
         
+        for element in currentStone {
+            let path = UIBezierPath()
+            let upperLeft = CGPoint(x: element.x - CGFloat(radius), y: element.y - CGFloat(radius))
+            let lowerLeft = CGPoint(x: element.x - CGFloat(radius), y: element.y + CGFloat(radius))
+            let lowerRight = CGPoint(x: element.x + CGFloat(radius), y: element.y + CGFloat(radius))
+            let upperRight = CGPoint(x: element.x + CGFloat(radius), y: element.y - CGFloat(radius))
+            path.move(to: upperLeft)
+            path.addLine(to: lowerLeft)
+            path.addLine(to: lowerRight)
+            path.addLine(to: upperRight)
+            path.addLine(to: upperLeft)
+            UIColor.black.set()
+            path.close()
+            path.fill()
+            path.stroke()
+        }
+        
         
         for box in explosionBoxes {
             let path = UIBezierPath()
@@ -113,6 +132,14 @@ class BomberManView: UIView {
         currentPowerUps = temp
     }
     
+    func refreshStone(stone: [[Double]]) {
+        var temp: [CGPoint] = []
+        for element in stone {
+            temp.append(CGPoint(x: element[0], y: element[1]))
+        }
+        currentStone = temp
+    }
+    
     func getMinX() -> Double {
         let length = 0.9 * min(bounds.width, bounds.height)
         return Double(bounds.midX - 0.5 * length)
@@ -138,17 +165,17 @@ class BomberManView: UIView {
         let center = currentBombs.remove(at: 0)
         let range = currentBombsRange.remove(at: 0)
         let corner1 = CGPoint(x: center.x - CGFloat(radius), y: center.y - CGFloat(radius))
-        let corner2 = CGPoint(x: center.x - 10, y: center.y - CGFloat(range))
-        let corner3 = CGPoint(x: center.x + 10, y: center.y - CGFloat(range))
-        let corner4 = CGPoint(x: center.x + 10, y: center.y - 10)
-        let corner5 = CGPoint(x: center.x + CGFloat(range), y: center.y - 10)
-        let corner6 = CGPoint(x: center.x + CGFloat(range), y: center.y + 10)
-        let corner7 = CGPoint(x: center.x + 10, y: center.y + 10)
-        let corner8 = CGPoint(x: center.x + 10, y: center.y + CGFloat(range))
-        let corner9 = CGPoint(x: center.x - 10, y: center.y + CGFloat(range))
-        let corner10 = CGPoint(x: center.x - 10, y: center.y + 10)
-        let corner11 = CGPoint(x: center.x - CGFloat(range), y: center.y + 10)
-        let corner12 = CGPoint(x: center.x - CGFloat(range), y: center.y - 10)
+        let corner2 = CGPoint(x: center.x - CGFloat(radius), y: center.y - CGFloat(range))
+        let corner3 = CGPoint(x: center.x + CGFloat(radius), y: center.y - CGFloat(range))
+        let corner4 = CGPoint(x: center.x + CGFloat(radius), y: center.y - CGFloat(radius))
+        let corner5 = CGPoint(x: center.x + CGFloat(range), y: center.y - CGFloat(radius))
+        let corner6 = CGPoint(x: center.x + CGFloat(range), y: center.y + CGFloat(radius))
+        let corner7 = CGPoint(x: center.x + CGFloat(radius), y: center.y + CGFloat(radius))
+        let corner8 = CGPoint(x: center.x + CGFloat(radius), y: center.y + CGFloat(range))
+        let corner9 = CGPoint(x: center.x - CGFloat(radius), y: center.y + CGFloat(range))
+        let corner10 = CGPoint(x: center.x - CGFloat(radius), y: center.y + CGFloat(radius))
+        let corner11 = CGPoint(x: center.x - CGFloat(range), y: center.y + CGFloat(radius))
+        let corner12 = CGPoint(x: center.x - CGFloat(range), y: center.y - CGFloat(radius))
         temp.append([corner1, corner2, corner3, corner4, corner5, corner6, corner7, corner8, corner9, corner10, corner11, corner12])
         explosionBoxes = temp
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {[weak self]_ in

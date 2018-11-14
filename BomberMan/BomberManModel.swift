@@ -23,9 +23,9 @@ class BomberManModel
     
     
     
-    var bushes: [[Double]] = []
+    var bush: [[Double]] = []
     
-    var bricks: [[Double]] = []
+    var stone: [[Double]] = []
     
     var radius: Double = 0 {
         didSet{
@@ -36,16 +36,11 @@ class BomberManModel
             bomberMan1X = maxX - radius
             bomberMan1Y = maxY - radius
             
-//            addOnX = (minX + maxX) / 2
-//            addOnY = (minY + maxY) / 2
-            
             
             powerUps = [[(minX + maxX) / 2, (minY + maxY) / 2],
-                      [(minX + maxX) / 4, (minY + maxY) / 4],
-                      [3 * (minX + maxX) / 4, 3 * (minY + maxY) / 4]]
-            
-//            print (addOnX)
-//            print (addOnY)
+                      [(minX + maxX) / 4, (minY + maxY) / 2],
+                      [3 * (minX + maxX) / 4, 2 * (minY + maxY) / 4]]
+            stone = [[(minX + maxX) / 2 - 5 * radius, (minY + maxY) / 2 + 5 * radius]]
         }
     }
     
@@ -69,70 +64,69 @@ class BomberManModel
     
     func checkAddOns() {
         
+        var newPowerups: [[Double]] = []
+        
         for powerUp in powerUps {
             if (bomberManX >= powerUp[0] - radius && bomberManX <= powerUp[0] + radius &&
-                bomberManY <= powerUp[1] - radius && bomberManY <= powerUp[1] + radius) {
+                bomberManY >= powerUp[1] - radius && bomberManY <= powerUp[1] + radius) {
                 bomberManRange *= 2
-                powerUps.removeFirst()
-//                powerUp[0] = 1000000
-//                powerUp[1] = 1000000
             }
             else if (bomberMan1X >= powerUp[0] - radius && bomberMan1X <= powerUp[0] + radius &&
-                bomberMan1Y <= powerUp[1] - radius && bomberMan1Y <= powerUp[1] + radius) {
+                bomberMan1Y >= powerUp[1] - radius && bomberMan1Y <= powerUp[1] + radius) {
                 bomberMan1Range *= 2
-                powerUps.removeFirst()
-//                powerUp[0] = 1000000
-//                powerUp[1] = 1000000
+            }
+            else {
+                newPowerups.append(powerUp)
             }
         }
+        powerUps = newPowerups
     }
     
     func moveRight() {
-        if (bomberManX < maxX - radius) {
-             bomberManX += radius
-
+        if (bomberManX < maxX - 2 * radius) {
+             bomberManX += 2 * radius
         }
     }
     
     func moveLeft() {
-        if (bomberManX > minX + radius) {
-            bomberManX -= radius
+        if (bomberManX > minX + 2 * radius) {
+            bomberManX -= 2 * radius
         }
     }
     
     func moveUp () {
-        if (bomberManY > minY + radius) {
-            bomberManY -= radius
+        if (bomberManY > minY + 2 * radius) {
+            bomberManY -= 2 * radius
         }
     }
     
     func moveDown() {
-        if (bomberManY < maxY - radius) {
-            bomberManY += radius
+        if (bomberManY < maxY - 2 * radius) {
+            bomberManY += 2 * radius
         }
     }
     
     func moveRight1() {
-        if (bomberMan1X < maxX - radius) {
-            bomberMan1X += radius
+        if (bomberMan1X < maxX - 2 * radius) {
+            bomberMan1X += 2 * radius
         }
     }
     
     func moveLeft1() {
-        if (bomberMan1X > minX + radius) {
-            bomberMan1X -= radius
+        if (bomberMan1X > minX + 2 * radius) {
+            bomberMan1X -= 2 * radius
         }
     }
     
     func moveUp1 () {
-        if (bomberMan1Y > minY + radius) {
-            bomberMan1Y -= radius
+        if (bomberMan1Y > minY + 2 * radius) {
+            bomberMan1Y -= 2 * radius
         }
     }
     
     func moveDown1() {
-        if (bomberMan1Y < maxY - radius) {
-            bomberMan1Y += radius
+        if (bomberMan1Y < maxY - 2 * radius) {
+            bomberMan1Y += 2 * radius
         }
     }
     
@@ -171,7 +165,9 @@ class BomberManModel
         bomberMan1Y = maxY - radius
         bombs = []
         powerUps = [[(minX + maxX) / 2, (minY + maxY) / 2],
-                    [(minX + maxX) / 4, (minY + maxY) / 4],
-                    [3 * (minX + maxX) / 4, 3 * (minY + maxY) / 4]]
+                    [(minX + maxX) / 4, (minY + maxY) / 2],
+                    [3 * (minX + maxX) / 4, (minY + maxY) / 2]]
+        bomberManRange = 30
+        bomberMan1Range = 30
     }
 }

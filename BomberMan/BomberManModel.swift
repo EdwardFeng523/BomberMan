@@ -40,7 +40,13 @@ class BomberManModel
             powerUps = [[(minX + maxX) / 2, (minY + maxY) / 2],
                       [(minX + maxX) / 4, (minY + maxY) / 2],
                       [3 * (minX + maxX) / 4, 2 * (minY + maxY) / 4]]
-            stone = [[(minX + maxX) / 2 - 5 * radius, (minY + maxY) / 2 + 5 * radius]]
+            
+            stone = [[(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 6 * radius]]
+            
+//            stone = [[(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 6 * radius],
+//                     [(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 4 * radius],
+//                     [(minX + maxX) / 2 - 4 * radius, (minY + maxY) / 2 + 6 * radius]
+//                    ]
         }
     }
     
@@ -61,6 +67,21 @@ class BomberManModel
     var bomberMan1Wins: Bool = false
     
     var bombs: [[Double]] = []
+    
+    func checkValidity(x: Double, y: Double) -> Bool {
+        if (x < minX || x > maxX || y < minY || y > maxY) {
+            return false
+        }
+        for ele in stone {
+            print ("checking")
+            let sx = ele[0]
+            let sy = ele[1]
+            if (abs(x - sx) < radius && abs(y - sy) < radius) {
+                return false
+            }
+        }
+        return true
+    }
     
     func checkAddOns() {
         
@@ -86,6 +107,9 @@ class BomberManModel
         if (bomberManX < maxX - 2 * radius) {
              bomberManX += 2 * radius
         }
+//        if (checkValidity(x: bomberManX + 2 * radius, y: bomberManY)) {
+//            bomberManX += 2 * radius
+//        }
     }
     
     func moveLeft() {

@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BomberMan/ViewController.swift"
-            timestampString = "563687241.84345"
+            timestampString = "565477689.1869251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "bomberManModel"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BomberMan/ViewController.swift"
-            timestampString = "563687241.893363"
+            timestampString = "565477689.189258"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "bomberManModel"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,13 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BomberMan/ViewController.swift"
-            timestampString = "563687241.8941489"
+            timestampString = "565477689.1897039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "bomberManView"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BomberMan/ViewController.swift"
-            timestampString = "563687241.894933"
+            timestampString = "565477689.19002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
             endingLineNumber = "15"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "bomberManView"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

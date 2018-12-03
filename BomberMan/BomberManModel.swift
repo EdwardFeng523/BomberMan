@@ -41,7 +41,39 @@ class BomberManModel
                       [(minX + maxX) / 4, (minY + maxY) / 2],
                       [3 * (minX + maxX) / 4, 2 * (minY + maxY) / 4]]
             
-            stone = [[(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 6 * radius]]
+            stone = [[(minX + maxX) / 2 - 12 * radius, (minY + maxY) / 2 + 12 * radius],
+                     [(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 + 12 * radius],
+                     [(minX + maxX) / 2 - 12 * radius, (minY + maxY) / 2 + 10 * radius],
+                     
+                     [(minX + maxX) / 2 - 12 * radius, (minY + maxY) / 2 - 12 * radius],
+                     [(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 - 12 * radius],
+                     [(minX + maxX) / 2 - 12 * radius, (minY + maxY) / 2 - 10 * radius],
+                     
+                     [(minX + maxX) / 2 + 12 * radius, (minY + maxY) / 2 + 12 * radius],
+                     [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 + 12 * radius],
+                     [(minX + maxX) / 2 + 12 * radius, (minY + maxY) / 2 + 10 * radius],
+                     
+                     [(minX + maxX) / 2 + 12 * radius, (minY + maxY) / 2 - 12 * radius],
+                     [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 - 12 * radius],
+                     [(minX + maxX) / 2 + 12 * radius, (minY + maxY) / 2 - 10 * radius]
+                    ]
+            
+            bush = [[(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 + 10 * radius],
+                    [(minX + maxX) / 2 - 8 * radius, (minY + maxY) / 2 + 10 * radius],
+                    [(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 + 8 * radius],
+                    
+                    [(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 - 10 * radius],
+                    [(minX + maxX) / 2 - 8 * radius, (minY + maxY) / 2 - 10 * radius],
+                    [(minX + maxX) / 2 - 10 * radius, (minY + maxY) / 2 - 8 * radius],
+                    
+                    [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 + 10 * radius],
+                    [(minX + maxX) / 2 + 8 * radius, (minY + maxY) / 2 + 10 * radius],
+                    [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 + 8 * radius],
+                    
+                    [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 - 10 * radius],
+                    [(minX + maxX) / 2 + 8 * radius, (minY + maxY) / 2 - 10 * radius],
+                    [(minX + maxX) / 2 + 10 * radius, (minY + maxY) / 2 - 8 * radius]
+            ]
             
 //            stone = [[(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 6 * radius],
 //                     [(minX + maxX) / 2 - 6 * radius, (minY + maxY) / 2 + 4 * radius],
@@ -68,20 +100,34 @@ class BomberManModel
     
     var bombs: [[Double]] = []
     
+//    func checkValidity(x: Double, y: Double) -> Bool {
+//        if (x < minX || x > maxX || y < minY || y > maxY) {
+//            return false
+//        }
+//        for ele in stone {
+//            print ("checking")
+//            let sx = ele[0]
+//            let sy = ele[1]
+//            if (abs(x - sx) < radius && abs(y - sy) < radius) {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+    
     func checkValidity(x: Double, y: Double) -> Bool {
-        if (x < minX || x > maxX || y < minY || y > maxY) {
+        if (x > maxX || x < minX || y > maxY || y < minY) {
             return false
         }
         for ele in stone {
-            print ("checking")
-            let sx = ele[0]
-            let sy = ele[1]
-            if (abs(x - sx) < radius && abs(y - sy) < radius) {
+            if (abs(x - ele[0]) < radius && abs(y - ele[1]) < radius) {
                 return false
             }
         }
         return true
     }
+    
+    
     
     func checkAddOns() {
         
@@ -104,52 +150,49 @@ class BomberManModel
     }
     
     func moveRight() {
-        if (bomberManX < maxX - 2 * radius) {
+        if (checkValidity(x: bomberManX + 2 * radius, y: bomberManY)) {
              bomberManX += 2 * radius
         }
-//        if (checkValidity(x: bomberManX + 2 * radius, y: bomberManY)) {
-//            bomberManX += 2 * radius
-//        }
     }
     
     func moveLeft() {
-        if (bomberManX > minX + 2 * radius) {
+        if (checkValidity(x: bomberManX - 2 * radius, y: bomberManY)) {
             bomberManX -= 2 * radius
         }
     }
     
     func moveUp () {
-        if (bomberManY > minY + 2 * radius) {
+        if (checkValidity(x: bomberManX, y: bomberManY - 2 * radius)) {
             bomberManY -= 2 * radius
         }
     }
     
     func moveDown() {
-        if (bomberManY < maxY - 2 * radius) {
+        if (checkValidity(x: bomberManX, y: bomberManY + 2 * radius)) {
             bomberManY += 2 * radius
         }
     }
     
     func moveRight1() {
-        if (bomberMan1X < maxX - 2 * radius) {
+        if (checkValidity(x: bomberMan1X + 2 * radius, y: bomberMan1Y)) {
             bomberMan1X += 2 * radius
         }
     }
     
     func moveLeft1() {
-        if (bomberMan1X > minX + 2 * radius) {
+        if (checkValidity(x: bomberMan1X - 2 * radius, y: bomberMan1Y)) {
             bomberMan1X -= 2 * radius
         }
     }
     
     func moveUp1 () {
-        if (bomberMan1Y > minY + 2 * radius) {
+        if (checkValidity(x: bomberMan1X, y: bomberMan1Y - 2 * radius)) {
             bomberMan1Y -= 2 * radius
         }
     }
     
     func moveDown1() {
-        if (bomberMan1Y < maxY - 2 * radius) {
+        if (checkValidity(x: bomberMan1X, y: bomberMan1Y + 2 * radius)) {
             bomberMan1Y += 2 * radius
         }
     }

@@ -122,6 +122,8 @@ class ViewController: UIViewController {
         
         bomberManView?.refreshStone(stone: bomberManModel.stone)
         
+        bomberManView?.refreshBush(bush: bomberManModel.bush)
+        
         if (bomberManModel.gameOver == true) {
             
             var msg: String = ""

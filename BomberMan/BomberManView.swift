@@ -20,6 +20,8 @@ class BomberManView: UIView {
     
     var currentStone: [CGPoint] = [] { didSet{setNeedsDisplay()} }
     
+    var currentBush: [CGPoint] = [] { didSet{setNeedsDisplay()} }
+    
     var currentBombsRange: [Double] = [] { didSet{setNeedsDisplay()}}
     
     var explosionBoxes: [[CGPoint]] = [] { didSet{setNeedsDisplay()}}
@@ -90,6 +92,23 @@ class BomberManView: UIView {
             path.stroke()
         }
         
+        for element in currentBush {
+            let path = UIBezierPath()
+            let upperLeft = CGPoint(x: element.x - CGFloat(radius), y: element.y - CGFloat(radius))
+            let lowerLeft = CGPoint(x: element.x - CGFloat(radius), y: element.y + CGFloat(radius))
+            let lowerRight = CGPoint(x: element.x + CGFloat(radius), y: element.y + CGFloat(radius))
+            let upperRight = CGPoint(x: element.x + CGFloat(radius), y: element.y - CGFloat(radius))
+            path.move(to: upperLeft)
+            path.addLine(to: lowerLeft)
+            path.addLine(to: lowerRight)
+            path.addLine(to: upperRight)
+            path.addLine(to: upperLeft)
+            UIColor.green.set()
+            path.close()
+            path.fill()
+            path.stroke()
+        }
+        
         
         for box in explosionBoxes {
             let path = UIBezierPath()
@@ -138,6 +157,14 @@ class BomberManView: UIView {
             temp.append(CGPoint(x: element[0], y: element[1]))
         }
         currentStone = temp
+    }
+    
+    func refreshBush(bush: [[Double]]) {
+        var temp: [CGPoint] = []
+        for element in bush {
+            temp.append(CGPoint(x: element[0], y: element[1]))
+        }
+        currentBush = temp
     }
     
     func getMinX() -> Double {
